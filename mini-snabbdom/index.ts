@@ -132,14 +132,20 @@ const oldVnode = h('div', {
 const newVnode = h('div', {
     key: 'oldVnode'
 }, [
+    // h('li', { key: 999 }, '999'),
+    // h('li', { key: 9 }, '9'),
+    // h('li', { key: 3 }, '3'),
+    // h('li', { key: 22 }, '22'),
+    // h('li', { key: 2 }, '2'),
+    // h('li', { key: 4 }, '4'),
+    // h('li', { key: 29 }, '29'),
+    // h('li', { key: 33 }, '33'),
+    // h('li', { key: 11 }, '11'),
+
+    h('li', { key: 2 }, '22222'),
     h('li', { key: 999 }, '999'),
     h('li', { key: 9 }, '9'),
-    h('li', { key: 3 }, '3'),
-    h('li', { key: 22 }, '2'),
-    h('li', { key: 4 }, '4'),
-    h('li', { key: 29 }, '29'),
     h('li', { key: 33 }, '33'),
-    h('li', { key: 11 }, '11'),
 ])
 
 patch(content, oldVnode)
