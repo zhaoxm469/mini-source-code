@@ -84,9 +84,9 @@ function updateChild(parentEl: Node, oldCh: VNode[], newCh: VNode[]) {
     let vnodeMap = new Map();
 
 
-    let endIdx = 0;
+    // let endIdx = 0;
 
-    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx && endIdx < 50) {
+    while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
 
         if (startOldVnode == null) {
             startOldVnode = oldCh[++oldStartIdx]
@@ -129,7 +129,9 @@ function updateChild(parentEl: Node, oldCh: VNode[], newCh: VNode[]) {
                 }
             }
 
+            // 获取新前对应旧的虚拟DOM的索引
             const oldInIdx = vnodeMap.get(startNewVnode.key)
+
             if (oldInIdx !== undefined) {
                 const oldVnode = oldCh[oldInIdx].elm;
                 patchVNode(oldCh[oldInIdx], startNewVnode)
@@ -148,7 +150,7 @@ function updateChild(parentEl: Node, oldCh: VNode[], newCh: VNode[]) {
             }
         }
 
-        endIdx++;
+        // endIdx++;
     }
 
     console.log({ oldStartIdx, newStartIdx, oldEndIdx, newEndIdx });
