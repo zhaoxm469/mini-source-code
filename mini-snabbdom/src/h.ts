@@ -6,9 +6,10 @@ export function h(sel: string, data, text: string): VNode;
 export function h(sel: string, data: VNodeData, childer: VNodeChildren): VNode;
 
 export function h(sel: string, b?: any, c?: any): VNode {
-    let data = undefined, children = undefined, text = undefined;
+    let data = undefined, children = undefined, text = undefined, key = undefined, elm = undefined;
     if (typeof b === 'object' && !Array.isArray(b)) {
         data = b;
+        if (data.key) key = data.key;
     }
     if (b === null) data = {};
 
@@ -25,7 +26,7 @@ export function h(sel: string, b?: any, c?: any): VNode {
         children = c;
     }
 
-    return vnode(sel, data, children, text);
+    return vnode(sel, data, children, text, elm, key);
 }
 
 export function vnode(sel, data, children, text, elm?, key?): VNode {
