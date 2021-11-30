@@ -14,3 +14,7 @@ const insertB = Node.insertBefore(newNode,referenceNode)
 const nextNode = Node.nextSibling ;
 
 返回Node元素后面紧跟着的元素 ， 如果Node节点后面没有元素，则返回null 
+
+## 流程图 
+
+![alt](./snabbdom-patch过程.png)
