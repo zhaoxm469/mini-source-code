@@ -125,13 +125,14 @@ function updateChild(parentEl: Node, oldCh: VNode[], newCh: VNode[]) {
 
             if (!vnodeMap.size) {
                 for (let i = oldStartIdx; i <= oldEndIdx; i++) {
-                    vnodeMap.set(oldCh[i].key, i)
+                    oldCh[i] && vnodeMap.set(oldCh[i].key, i)
                 }
             }
 
             const oldInIdx = vnodeMap.get(startNewVnode.key)
             if (oldInIdx !== undefined) {
                 const oldVnode = oldCh[oldInIdx].elm;
+                patchVNode(oldCh[oldInIdx], startNewVnode)
                 oldCh[oldInIdx] = null;
                 console.log('map中找到了', startNewVnode.key);
                 parentEl.insertBefore(oldVnode, startOldVnode.elm)
@@ -158,7 +159,7 @@ function updateChild(parentEl: Node, oldCh: VNode[], newCh: VNode[]) {
         if (oldStartIdx > oldEndIdx) {
 
             // 如果新后 后面有元素 则是向前插入， 如果新后后面没有元素这是向后插入
-            const referenceNode = newCh[newEndIdx + 1].elm || null;
+            const referenceNode = newCh[newEndIdx + 1]?.elm || null;
 
             for (; newStartIdx <= newEndIdx; newStartIdx++) {
                 parentEl.insertBefore(createElement(newCh[newStartIdx]).elm, referenceNode);
@@ -169,7 +170,7 @@ function updateChild(parentEl: Node, oldCh: VNode[], newCh: VNode[]) {
         // 如果map 里还有老的节点，则移除即可
         if (vnodeMap) {
             for (; oldStartIdx <= oldEndIdx; oldStartIdx++) {
-                parentEl.removeChild(oldCh[oldStartIdx].elm);
+                oldCh[oldStartIdx] && parentEl.removeChild(oldCh[oldStartIdx].elm);
             }
         }
     }
